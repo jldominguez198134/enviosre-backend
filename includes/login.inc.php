@@ -29,7 +29,7 @@ if(isset($_POST['login-submit'])){
                 } elseif($pwdCheck==true){
                     
                     $_SESSION["user_id"]=$row['user_id'];
-                    header("Location: ../index.php?login=success&".$_SESSION["userUid"]);
+                    header("Location: ../profile_page.php?login=success&".$_SESSION["user_id"]);
                     exit();
                 }
             }else{
