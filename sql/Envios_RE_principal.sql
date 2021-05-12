@@ -22,8 +22,8 @@ create table cuentas_bancarias(
     cuentaBancaria VARCHAR(225),
     pais VARCHAR(225),
     banco VARCHAR(225),
-    PRIMARY KEY (cuentaBancaria),
     email VARCHAR(225) NOT NULL,
+    PRIMARY KEY (cuentaBancaria, email),
     CONSTRAINT FK_usuarioscuentas FOREIGN KEY (email)
     REFERENCES usuarios(email)
 
@@ -34,8 +34,8 @@ create table consultas_tasa_diaria(
     Moneda_consulta VARCHAR(225),
     horaConsulta VARCHAR(225),
     horaConsultaFinalizacion VARCHAR(225),
-    PRIMARY KEY (ID_consulta),
     email VARCHAR(225) NOT NULL,
+    PRIMARY KEY (ID_consulta),
     CONSTRAINT FK_usuariosconsultas FOREIGN KEY (email)
     REFERENCES usuarios(email)
 

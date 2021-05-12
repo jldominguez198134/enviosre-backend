@@ -6,7 +6,7 @@ require "header.php";
 <!DOCTYPE html>
 
 <html lang="en">
-
+<script src="scripts.js" charset="UTF-8"></script>
 <head>
 
     <meta charset="UTF-8">

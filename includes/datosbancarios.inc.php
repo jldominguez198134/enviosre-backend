@@ -14,7 +14,7 @@ if(isset($_POST['cuentaBancaria'])){
     $cuentaBancaria=$_POST['cuentaBancaria'];
     $pais=$_POST['pais'];
     $banco=$_POST['banco'];
-    $email=$_SESSION['email'];
+    $email=$_POST['email'];
 
     if (empty($cuentaBancaria) || empty($pais) || empty($banco)){
 
@@ -46,14 +46,18 @@ if(isset($_POST['cuentaBancaria'])){
     }else{
 
         mysqli_stmt_bind_param($stmt, "ssss", $email, $cuentaBancaria, $pais, $banco);
-        mysqli_stmt_execute($stmt);
-        header("Location: ../profile_page.php");
+        $resultexec=mysqli_stmt_execute($stmt);
+        if ($resultexec===false){
+            header("HTTP/1.1 400 Bad Request");
+            exit();
+        }else{
+        header("HTTP/1.1 200");
 
         }
-
     }  
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-}
+        }
+    }
 }
     ?>

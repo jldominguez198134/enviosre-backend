@@ -18,23 +18,23 @@ if(isset($_POST['pwd-repeat'])){
 
     if (empty($email) || empty($password) || empty($password_repeat)){
 
-        header("Location: ../signup.php?error=emptyfields&uid="."&mail=".$email);
+        header("HTTP/1.1 400 Bad Request");
         exit();
 
     }
 
-    elseif(!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)){
-        header("Location: ../signup.php?error=invalidmailuid");
+    elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        header("HTTP/1.1 400 Bad Request");
         exit();
     }
 
     elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        header("Location: ../signup.php?error=invalidmail&uid=".$username);
+        header("HTTP/1.1 400 Bad Request");
         exit();
     }
 
     elseif($password!==$password_repeat){
-        header("HTTP/1.1 409 Conflict");
+        header("HTTP/1.1 400 Bad Request");
         exit();
     }
     else{
@@ -70,7 +70,16 @@ if(isset($_POST['pwd-repeat'])){
                     mysqli_stmt_bind_param($stmt, "sssss", $email, $hashedPwd, $nombre, $apellidos, $telefono);
                     mysqli_stmt_execute($stmt);
                     $_SESSION["email"]=$email;
-                    header("Location: ../datosbancarios.php?login=success");
+                    // $datos=array(
+                    //     "email"=>$email,
+                    //     "nombre"=>$nombre,
+                    //     "apellidos"=>$apellidos,
+                    //     "telefono"=>$telefono
+                    //     );
+                    
+                    // $payload = json_encode($datos);
+                    // echo $payload
+                    // header("Location: ../datosbancarios.php?login=success");
                 }
 
             }

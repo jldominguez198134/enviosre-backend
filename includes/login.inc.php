@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_POST['login-submit'])){
+if(isset($_POST['pwd'])){
 
     require 'dbh.inc.php';
 
@@ -8,7 +8,8 @@ if(isset($_POST['login-submit'])){
     $password=$_POST['pwd'];
 
     if (empty($email) ){
-        header("Location: ../index.php?error=emptyfields");
+        // header("Location: ../index.php?error=emptyfields");
+        header("HTTP/1.1 401 Unauthorized");
     }
 
     else{
@@ -28,9 +29,15 @@ if(isset($_POST['login-submit'])){
                     exit;
                     
                 } elseif($pwdCheck==true){
-                    $_SESSION["email"]=$row['email'];
-                    header("Location: ../profile_page.php");
+                    // header("Location: ../profile_page.php");
                     //header("HTTP/1.1 200 OK");
+                    $datos=array(
+                            "email"=>$row['email'],
+                            "nombre"=>$row['nombre'],
+                            "apellidos"=>$row['telefono'], 
+                            );
+                    header("Content-Type: application/json");  
+                    echo json_encode($datos);
                     exit;
                 }
             }else{
@@ -41,5 +48,5 @@ if(isset($_POST['login-submit'])){
     }
 
 } else {
-    header("Location: ../index.php");
+    header("HTTP/1.1 401 Unauthorized");
 }
