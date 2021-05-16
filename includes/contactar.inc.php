@@ -1,11 +1,6 @@
 <?php
-require '../config/config.php';
-
-$configs = include('../config/config.php');
 
 require 'dbh.inc.php';
-
-
 
 if(isset($_POST['email'])){
     //El usuario debe llegar a través de la página de comentario

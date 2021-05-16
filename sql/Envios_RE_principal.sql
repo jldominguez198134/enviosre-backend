@@ -31,9 +31,12 @@ create table cuentas_bancarias(
 
 create table consultas_tasa_diaria(
     ID_consulta INT UNSIGNED AUTO_INCREMENT  NOT NULL,
-    Moneda_consulta VARCHAR(225),
+    monedaOrigen VARCHAR(225),
+    monedaDestino VARCHAR(225),
     horaConsulta VARCHAR(225),
     horaConsultaFinalizacion VARCHAR(225),
+    cantidad FLOAT,
+    cantidadTransformada FLOAT,
     email VARCHAR(225) NOT NULL,
     PRIMARY KEY (ID_consulta),
     CONSTRAINT FK_usuariosconsultas FOREIGN KEY (email)
@@ -47,6 +50,7 @@ create table transacciones_realizadas(
     cuentaBancariaDestino VARCHAR(225),
     lugarTransaccion VARCHAR(225),
     telefonoReceptor INT(13),
+    cantidad FLOAT,
     PRIMARY KEY (ID_transaccion),
     email VARCHAR(225) NOT NULL,
     cuentaBancaria VARCHAR(225),
