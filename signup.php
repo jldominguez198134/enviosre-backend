@@ -21,6 +21,14 @@
         }
     }
 
+    $user_ip = getenv('REMOTE_ADDR');
+    $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip="));
+    $country = $geo["geoplugin_countryName"];
+    $city = $geo["geoplugin_city"];
+    $json_string=json_encode($city, JSON_PRETTY_PRINT);
+
+    echo "$json_string"
+
     ?>
 
 

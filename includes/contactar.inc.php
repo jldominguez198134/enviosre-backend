@@ -1,11 +1,10 @@
 <?php
-require '../config/config.php';
 
-$configs = include('../config/config.php');
+header("Access-Control-Allow-Origin: http://localhost:4200");
+header("Access-Control-Allow-Methods: GET,POST,PUT,OPTIONS");
+header("Access-Control-Allow-Headers:*");
 
 require 'dbh.inc.php';
-
-
 
 if(isset($_POST['email'])){
     //El usuario debe llegar a través de la página de comentario
