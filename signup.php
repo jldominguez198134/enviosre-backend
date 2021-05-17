@@ -31,7 +31,7 @@
     <input type="text" name="apellidos", placeholder="apellidos">
     <input type="number" name="telefono", placeholder="telefono">
     <input type="password" name="pwd", placeholder="password">
-    <input type="password" name="pwd-repeat", placeholder="Repeat-password">
+    <input type="password" name="pwd_repeat", placeholder="Repeat-password">
     <button type="submit" name="signup-submit">Signup</button>
     </form>
 
