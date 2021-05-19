@@ -29,7 +29,8 @@ exit();
             $datos=array(
                     "email"=>$row['email'],
                     "nombre"=>$row['nombre'],
-                    "apellidos"=>$row['telefono'], 
+                    "apellidos"=>$row['apellidos'],
+                    "telefono"=>$row['telefono'], 
                     );
             header("Content-Type: application/json");  
             echo json_encode($datos);
