@@ -28,6 +28,17 @@ exit();
             exit;
             
         } elseif($pwdCheck==true){
+            $sql2="SELECT a.email, a.nombre, a.apellidos, a.telefono, b.cuentaBancaria FROM usuarios a LEFT JOIN cuentas_bancarias b ON a.email=b.email WHERE a.email=?";
+            
+            $stmt=mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql2)){
+                header("HTTP/1.1 500 Internal Server Error");
+            exit;    
+        }else{
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result=mysqli_stmt_get_result($stmt);
+            $row=mysqli_fetch_assoc($result);
             // header("Location: ../profile_page.php");
             //header("HTTP/1.1 200 OK");
             $datos=array(
@@ -35,11 +46,12 @@ exit();
                     "nombre"=>$row['nombre'],
                     "apellidos"=>$row['apellidos'],
                     "telefono"=>$row['telefono'], 
+                    "cuentaBancaria"=>$row['cuentaBancaria'], 
                     );
             header("Content-Type: application/json");  
             echo json_encode($datos);
             exit;
-        }
+        }}
     }else{
         header("HTTP/1.1 401 Unauthorized");
             exit;
