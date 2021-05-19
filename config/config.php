@@ -6,5 +6,4 @@ return array(
     'dbUsername' => 'root',
     'dBPassword' => '',
     'dBName' => 'envios_re_principal'),
-
 );
