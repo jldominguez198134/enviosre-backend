@@ -13,18 +13,18 @@ if((isset($_POST['email']))&&(isset($_POST['pwd']))&&(isset($_POST['cuentaBancar
     $cuentaBancariaDestino=$_POST['cuentaBancariaDestino'];
     $telefonoReceptor=$_POST['telefonoReceptor'];
     $cantidad=$_POST['cantidad'];
+    $lugarTransaccion="Madrid";
 }else{
     header("HTTP/1.1 400 Bad Request");
 }
 
 
-
 //LUGAR TRANSACCION
-$user_ip = getenv('REMOTE_ADDR');
-$geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip="));
-$country = $geo["geoplugin_countryName"];
-$city = $geo["geoplugin_city"];
-$lugarTransaccion=$city;
+// $user_ip = getenv('REMOTE_ADDR');
+// $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+// $country = $geo["geoplugin_countryName"];
+// $city = $geo["geoplugin_city"];
+// $lugarTransaccion=$city;
 
 
 //Aceptar transaccion
